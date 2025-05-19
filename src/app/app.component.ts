@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AfterViewInit } from '@angular/core';
-import e from 'express';
+import { HttpClient } from '@angular/common/http';
+import * as exoDispo from '../assets/exoDispo.json';
 
 @Component({
   selector: 'app-root',
@@ -10,28 +11,19 @@ import e from 'express';
 export class AppComponent implements AfterViewInit {
   title = 'muscle-groups';
   listeExoSemaine: any[] = [];
-  //on declare liste exo semaine comme une array de string vide
   fileContent: string = '';
   listeExoDisponible: any[] = [];
+  exoDisponibles: any = exoDispo;
+
+  constructor() {} // Inject HttpClient
 
   ngAfterViewInit(): void {
 
-    // on push lexo curl qui travail bicep avec name = curl et muscle on a biceps et trapeze dans muscle c'est une array
-    this.listeExoDisponible.push({name: "Bench Press", muscle: ["pecs"]});
-    this.listeExoDisponible.push({name: "Bench Press Incliné", muscle: ["pecs"]});
-    this.listeExoDisponible.push({name: "Bench Press Décliné", muscle: ["pecs"]});
-    this.listeExoDisponible.push({name: "Dev Militaire", muscle: ["epaule"]});
-    this.listeExoDisponible.push({name: "Elevation Latérales", muscle: ["epaule"]});
-    this.listeExoDisponible.push({name: "Triceps Corde", muscle: ["triceps"]});
-    this.listeExoDisponible.push({name: "Facepull", muscle: ["epaules"]});
-
-    this.listeExoDisponible.push({name: "Rowing Barre", muscle: ["dos"]});
-    this.listeExoDisponible.push({name: "Tirage Horizontal", muscle: ["dos"]});
-    this.listeExoDisponible.push({name: "Curl Barre", muscle: ["biceps"]});
-    this.listeExoDisponible.push({name: "Curl Marteau", muscle: ["biceps"]});
-    this.listeExoDisponible.push({name: "Shrugs", muscle: ["trapeze"]});
-
-    this.calculJailTime(5, 10, 4);
+    this.populateExoDispo();
+    
+    
+    // this.fileContent = JSON.stringify(exoDispo, null, 2);
+    this.calculJailTime(8, 16, 11);
   }
 
   initColors(color: string) {
@@ -229,6 +221,85 @@ export class AppComponent implements AfterViewInit {
     let secondsstring = jailTimeSplit[1];
     let seconds = parseInt(secondsstring) * 60 / 10 ;
     console.log("Jail Time : " + minutes + " minutes " + seconds + " seconds");
+  }
+
+  
+  populateExoDispo() {
+    for (const exo of this.exoDisponibles.default) {
+      this.listeExoDisponible.push(exo);
+    }
+  }
+
+  exportExoSemaine() {
+    const data = JSON.stringify(this.listeExoSemaine, null, 2);
+    const blob = new Blob([data], { type: 'application/json' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'exoSemaine.json';
+    a.click();
+    window.URL.revokeObjectURL(url);
+  }
+
+
+  
+  importExoDispo() {
+    //on demande a l'utilisateur de selectionner un fichier
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.onchange = e => {
+      //on recupere le fichier
+      const file = (e.target as HTMLInputElement).files![0];
+      //on cree un objet FileReader
+      const reader = new FileReader();
+      reader.onload = () => {
+        //on lit le fichier
+        const result = reader.result as string;
+        //on parse le fichier en json
+        const json = JSON.parse(result);
+        //on affiche le json dans la console
+        console.log(json);
+      };
+      reader.readAsText(file);
+    };
+    input.click();
+  }
+
+  exportExoDispo() {
+    //on transforme la liste des exos dispo en json
+    const data = JSON.stringify(this.exoDisponibles, null, 2);
+    //on cree un blob avec le json
+    const blob = new Blob([data], { type: 'application/json' });
+    //on cree un URL avec le blob
+    const url = window.URL.createObjectURL(blob);
+    //on cree un element a
+    const a = document.createElement('a');
+    //on donne l'url a l'element a
+    a.href = url;
+    //on donne un nom au fichier
+    a.download = 'exoDispo.json';
+    //on simule un click sur l'element a
+    a.click();
+    //on supprime l'url
+    window.URL.revokeObjectURL(url);
+  }
+
+
+    
+  importExoSemaine() {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.onchange = e => {
+      const file = (e.target as HTMLInputElement).files![0];
+      const reader = new FileReader();
+      reader.onload = () => {
+        const result = reader.result as string;
+        this.listeExoSemaine = JSON.parse(result);
+        this.changeMuscleColor();
+      };
+      reader.readAsText(file);
+    };
+    input.click();
   }
 
 }

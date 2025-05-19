@@ -1,0 +1,8 @@
+[
+    {"name":"Bench Press","muscle":["pecs"]},
+    {"name":"Bench Press Incliné","muscle":["pecs"]},
+    {"name":"Bench Press Décliné","muscle":["pecs"]},
+    {"name":"Dev Militaire","muscle":["epaule"]},
+    {"name":"Elevation Latérales","muscle":["epaule"]},
+    {"name":"Triceps Corde","muscle":["triceps"]}
+]

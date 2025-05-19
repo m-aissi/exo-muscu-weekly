@@ -1,4 +1,20 @@
-
+<!-- Example single danger button -->
+<div class="btn-group">
+  <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+    Action
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="#">Action</a></li>
+    <li><a class="dropdown-item" href="#">Another action</a></li>
+    <li><a class="dropdown-item" href="#">Something else here</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" href="#">Separated link</a></li>
+  </ul>
+</div>
+<button type="button" class="btn btn-primary" (click)="importExoDispo();">Importer des exercices</button>
+<button type="button" class="btn btn-primary" (click)="exportExoDispo()">Exporter les exercices</button>
+<button type="button" class="btn btn-primary" (click)="importExoSemaine()">Imorter les exercices de la semaine</button>
+<button type="button" class="btn btn-primary" (click)="exportExoSemaine()">Exporter les exercices de la semaine</button>
 <div class="container pt-5" style="height: 100vh; padding-top:auto; padding-bottom:auto;" >
   <div class="pt-5 d-flex flex-row mb-3 container" style="margin-top:auto !important; margin-bottom: auto !important;">
     <div class="d-flex justify-content-center " style="width:25vw;">    
@@ -39,17 +55,20 @@
               </g>
               <g id="Calves">
                 <path d="M142.885,152.39c0,0 -5.718,7.108 -6.096,10.007c-0.378,2.898 -0.387,16.918 0.677,19.353c0.779,1.782 4.588,-3.96 5.545,-7.56c0.956,-3.6 -0.014,3.34 2.394,5.922c0.407,0.436 4.674,-13.753 3.447,-18.453c-1.702,-6.519 -2.344,-8.369 -1.913,-11.391c0.678,-4.752 -2.574,2.122 -3.046,4.264c-0.472,2.142 -1.008,-2.142 -1.008,-2.142Z" style="fill:#4d4d4d;"/>
-                <path d="M119.244,152.39c0,0 5.718,7.108 6.096,10.007c0.378,2.898 0.387,16.918 -0.677,19.353c-0.779,1.782 -4.588,-3.96 -5.545,-7.56c-0.957,-3.6 0.014,3.34 -2.394,5.922c-0.407,0.436 -4.674,-13.753 -3.447,-18.453c1.702,-6.519 2.344,-8.369 1.913,-11.391c-0.678,-4.752 2.574,2.122 3.046,4.264c0.472,2.142 1.008,-2.142 1.008,-2.	142Z" style="fill:#4d4d4d;"/>
+                <path d="M119.244,152.39c0,0 5.718,7.108 6.096,10.007c0.378,2.898 0.387,16.918 -0.677,19.353c-0.779,1.782 -4.588,-3.96 -5.545,-7.56c-0.957,-3.6 0.014,3.34 -2.394,5.922c-0.407,0.436 -4.674,-13.753 -3.447,-18.453c1.702,-6.519 2.344,-8.369 1.913,-11.391c-0.678,-4.752 2.574,2.122 3.046,4.264c0.472,2.142 1.008,-2.142 1.008,-2.142Z" style="fill:#4d4d4d;"/>
               </g>
               <g id="Calves">
                 <path d="M150.232,37.934c0,0 1.105,11.785 -01.186,17.535c-1.481,0.86 -2.239,9.14 -2.239,9.14c0,0 -0.746,-2.099 -1.585,-2.005c-0.84,0.093 -2.425,0.679 -2.752,2.238c-0.326,0.56 -5.223,-17.301 6.762,-26.908Z" style="fill:#404040;" />
                 <path d="M112.828,37.934c0,0 -1.105,16.784 0.187,17.534c1.481,0.861 2.238,9.141 2.238,9.141c0,0 0.746,-2.099 1.586,-2.005c0.839,0.093 2.425,1.678 2.751,2.238c0.327,0.56 5.223,-17.302 -6.762,-26.908Z" style="fill:#404040;"/>
               </g>
+              <!-- lombaires -->
               <g id="biceps">
                 <path d="M121 92 q10 -25 20 -0.5" />
               </g>
-              <g id="biceps">
+              <!-- abducteurs -->
+              <g id="biceps"> 
                 <path d="M27 112 q11 -25 -3.7 -9.5" />
+                <path d="M61.5 112 q5 -15 -3.7 -15.5" />
               </g>
             </g>
           </g>
